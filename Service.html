@@ -1,7 +1,7 @@
  <html>
 <style type="text/css">
  body {background-color: #02A500;}
- #result {border: 1px; background-color: #ffffff; width: 50%; height: 60px;}
+ #result {border: 1px; background-color: #ffffff; width: 50%; height: 90px;}
   h1 { font-size: 40px;}
 </style>
 <head>
@@ -11,41 +11,47 @@
 
 function sumrow() {
 
- var x = parseFloat(document.getElementById("inputX").value); // Верхняя граница для суммы ряда
+ var x = parseFloat(document.getElementById("inputX").value); // The upper bound
  var a = parseFloat(document.getElementById("alpha").value); 
  var b = parseFloat(document.getElementById("beta").value); 
 if (isNaN(x)) {
-  alert("То что Вы ввели в поле X - это не число :( . Попробуйте еще раз.");
+  alert("x is not a number! Try again.");
   document.getElementById("inputX").focus();
   return; 
  }
 if (isNaN(b)) {
-  alert("То что Вы ввели в поле BETA - это не число :( . Попробуйте еще раз.");
+  alert("First exponent isn't a number! Try again.");
   document.getElementById("beta").focus();
   return; 
  }
 if (isNaN(a)) {
-  alert("То что Вы ввели в поле ALPHA - это не число :( . Попробуйте еще раз.");
+  alert("Second exponent isn't a number! Try again.");
   document.getElementById("alpha").focus();
   return;
   } 
 if (a<0) {
-  alert("ALPHA должно быть неотрицательным.");
+  alert("The first exponent must be non-negative!");
   document.getElementById("alpha").focus();
+  return;определяет порядок роста
+ }
+if (b<=-1) {
+  alert("The second exponent must be > -1!");
+  document.getElementById("beta").focus();
   return;
  }
   
- var s = 0.0;     // Значение суммы ряда
+ var s = 0.0;     // Sum value
  var n;
   for(n=1;n<=x;n++)
     {
         s += Math.pow(n,b)*Math.pow(x/n - parseInt(x/n), a);
     }
 
-    var gamma=0.0;   // интересующий нас коэффициент, он определяет порядок роста
+    var gamma=0.0;   // This coefficient sets the growth rate
     gamma = s / Math.pow(x, 1+b);
+    var error=(gamma*10.0*Math.PI)/x;
 
- document.getElementById("result").innerHTML='<h2>&gamma; = '+gamma+'</h2>';
+ document.getElementById("result").innerHTML='<h2>&gamma; = '+gamma+'</h2>'+'<h2>Computing error is '+error+'</h2>';
 
 }
 
