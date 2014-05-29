@@ -1,0 +1,125 @@
+ <html>
+<style type="text/css">
+ body {background-color: #02A500;}
+ #result {border: 1px; background-color: #ffffff; width: 50%; height: 60px;}
+  h1 { font-size: 40px;}
+</style>
+<head>
+<meta http-equiv="content-type" charset="utf-8">
+<title>Sum Maker</title>
+<script type="text/javascript">
+
+function sumrow() {
+
+ var x = parseFloat(document.getElementById("inputX").value); // Верхняя граница для суммы ряда
+ var a = parseFloat(document.getElementById("alpha").value); 
+ var b = parseFloat(document.getElementById("beta").value); 
+if (isNaN(x)) {
+  alert("То что Вы ввели в поле X - это не число :( . Попробуйте еще раз.");
+  document.getElementById("inputX").focus();
+  return; 
+ }
+if (isNaN(b)) {
+  alert("То что Вы ввели в поле BETA - это не число :( . Попробуйте еще раз.");
+  document.getElementById("beta").focus();
+  return; 
+ }
+if (isNaN(a)) {
+  alert("То что Вы ввели в поле ALPHA - это не число :( . Попробуйте еще раз.");
+  document.getElementById("alpha").focus();
+  return;
+  } 
+if (a<0) {
+  alert("ALPHA должно быть неотрицательным.");
+  document.getElementById("alpha").focus();
+  return;
+ }
+  
+ var s = 0.0;     // Значение суммы ряда
+ var n;
+  for(n=1;n<=x;n++)
+    {
+        s += Math.pow(n,b)*Math.pow(x/n - parseInt(x/n), a);
+    }
+
+    var gamma=0.0;   // интересующий нас коэффициент, он определяет порядок роста
+    gamma = s / Math.pow(x, 1+b);
+
+ document.getElementById("result").innerHTML='<h2>&gamma; = '+gamma+'</h2>';
+
+}
+
+var img = document.createElement("pic1");
+img.src = "pic1.png";
+
+function img_size(w, h) {
+  var v, h;
+  document.getElementById('pic1').width=w;
+  document.getElementById('pic1').height=h;
+}
+
+</script>
+</head>
+
+
+<body>
+<form name="summer">
+
+<style>
+ .headname {
+    text-align: center;
+    color: black;
+    font-size: 200%;
+}
+  .introduction {
+    text-align: center;
+    color: black;
+    font-size: 120%; }
+  .usualtext {
+    color: black;
+    font-size: 120%; }
+  .center {
+    text-align: center; }
+</style>
+
+
+<p> <div class='headname'> Computing service </div> </p>
+
+
+<p> <div class='introduction'>
+Hello! This computing service was created to calculate the constants in asymptotic of different series with fractional parts.</div> </p>
+<p> <div class='introduction'>
+This service allows to you set the upper bound of series, the exponent of the fractional part and the exponent of the growth factor.</div></p>
+<p> <div class='introduction'>
+The format of these series is:</div></p>
+
+<div class='center'>
+<img src='pic1.png'>;
+</div>
+
+<p><div class = 'usualtext'>
+Put the upper bound x:
+</div></p>
+
+<input type="text" id="inputX" value="0" size="10" /><br />
+
+<p><div class='usualtext'>
+Put the first exponent:
+</div></p>
+
+<input type="text" id="alpha" value="0" size="10" /><br />
+
+<p><div class='usualtext'>
+Put the second exponent:
+</div></p>
+
+<input type="text" id="beta" value="0" size="10" /><br />
+
+<br>
+<input type="button" value="Calculate" onclick="sumrow()">
+<hr>
+<div id="result"></div>
+
+</form>
+</body>
+</html>
