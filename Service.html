@@ -20,22 +20,22 @@ if (isNaN(x)) {
   return; 
  }
 if (isNaN(b)) {
-  alert("First exponent isn't a number! Try again.");
+  alert("'a' isn't a number! Try again.");
   document.getElementById("beta").focus();
   return; 
  }
 if (isNaN(a)) {
-  alert("Second exponent isn't a number! Try again.");
+  alert("'b' isn't a number! Try again.");
   document.getElementById("alpha").focus();
   return;
   } 
 if (a<0) {
-  alert("The first exponent must be non-negative!");
+  alert("'a' must be non-negative!");
   document.getElementById("alpha").focus();
   return;
  }
 if (b<=-1) {
-  alert("The second exponent must be > -1!");
+  alert("'b' must be > -1!");
   document.getElementById("beta").focus();
   return;
  }
@@ -55,8 +55,8 @@ if (b<=-1) {
 
 }
 
-var img = document.createElement("pic1");
-img.src = "pic1.png";
+var img = document.createElement("pic2");
+img.src = "pic2.png";
 
 function img_size(w, h) {
   var v, h;
@@ -100,7 +100,7 @@ This service allows to you set the upper bound of series, the exponent of the fr
 The format of these series is:</div></p>
 
 <div class='center'>
-<img src='pic1.png'>;
+<img src='pic2.png'>;
 </div>
 
 <p><div class = 'usualtext'>
@@ -110,13 +110,13 @@ Put the upper bound x:
 <input type="text" id="inputX" value="0" size="10" /><br />
 
 <p><div class='usualtext'>
-Put the first exponent:
+Put the exponent 'a':
 </div></p>
 
 <input type="text" id="alpha" value="0" size="10" /><br />
 
 <p><div class='usualtext'>
-Put the second exponent:
+Put the exponent 'b':
 </div></p>
 
 <input type="text" id="beta" value="0" size="10" /><br />
